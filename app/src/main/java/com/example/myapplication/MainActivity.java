@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+//              progressBar.setVisibility(View.VISIBLE);
                 String txt_Email = Email.getText().toString().trim();
                 String txt_Password = Password.getText().toString().trim();
 
@@ -77,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (txt_Password.length()<6) {
+                    Password.setError("Incorrect Password");
+                    Password.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                }
+
                 if (!Patterns.EMAIL_ADDRESS.matcher(txt_Email).matches()) {
                     Email.setError("Please provide valid email!");
                     Email.requestFocus();
@@ -88,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 auth.signInWithEmailAndPassword(txt_Email, txt_Password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
+                            progressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                             finish();

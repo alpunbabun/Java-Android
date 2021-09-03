@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -95,29 +97,48 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("Products")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    private String TAG;
+
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        productArrayList.clear();
+                        for (QueryDocumentSnapshot document: value) {
+                            productArrayList.add(new Product(document.getString("Product"), document.getString("SerialNumber"), document.getString("Block"), document.getString("Fullname")));
+                            if (progressDialog.isShowing())
+                                progressDialog.dismiss();
+                            Log.d(TAG, "onComplete" + document.getId());
+                            Log.d(TAG, "onComplete" + document.getData());
+                        }
+                        myAdapter.notifyDataSetChanged();
+                    }
+                });
+
+//        db.collection("Products")
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 //                        Toast.makeText(WelcomeActivity.this, "gasfgdhasvgdhafsdfsa", Toast.LENGTH_SHORT).show();
 //                        if (progressDialog.isShowing())
 //                                progressDialog.dismiss();
-                        if (error != null) {
-                            if (progressDialog.isShowing())
-                                progressDialog.dismiss();
-                            Log.e("Firestore error", error.getMessage());
-                        }
-                        for (DocumentChange dc : value.getDocumentChanges()) {
-                            if (dc.getType() == DocumentChange.Type.ADDED) {
-                                productArrayList.add(dc.getDocument().toObject(Product.class));
-                            }
-                            myAdapter.notifyDataSetChanged();
-                            if (progressDialog.isShowing())
-                                progressDialog.dismiss();
-                        }
-                    }
-                });
+//                        if (error != null) {
+//                            if (progressDialog.isShowing())
+//                                progressDialog.dismiss();
+//                            Log.e("Firestore error", error.getMessage());
+//                        }
+//                        for (DocumentChange dc : value.getDocumentChanges()) {
+//                            if (dc.getType() == DocumentChange.Type.ADDED) {
+//                                productArrayList.add(dc.getDocument().toObject(Product.class));
+//                            }
+//                            myAdapter.notifyDataSetChanged();
+//                            if (progressDialog.isShowing())
+//                                progressDialog.dismiss();
+//                        }
+//                    }
+//                });
     }
 
 }
