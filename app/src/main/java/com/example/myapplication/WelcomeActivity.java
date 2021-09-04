@@ -35,6 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -99,6 +100,81 @@ public class WelcomeActivity extends AppCompatActivity {
     private void EventChangeListener() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+//        db.collection("Products")
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots,
+//                                        @Nullable FirebaseFirestoreException e) {
+//
+//                        if (e != null) {
+//                            Log.w("YourTag", "Listen failed.", e);
+//                            return;
+//                        }
+//
+//                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+//                            if (doc.exists()){
+//                                Product product = doc.toObject(Product.class);
+//                                productArrayList.add(product);
+//                                myAdapter.notifyDataSetChanged();
+//                                if (progressDialog.isShowing())
+//                                progressDialog.dismiss();
+//                            }
+//                        }
+//                        Log.d("YourTag", "messageList: " + productArrayList);
+//                    }
+//                });
+
+//          db.collection("Products")
+//                  .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                      private String TAG;
+//                      @Override
+//                      public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                          if (error != null) {
+//                            Log.e(TAG, "listen:error", error);
+//                            return;
+//                        }
+//                          if (value != null) {
+//                              Log.d(TAG, "onEvent: ");
+//                              List<DocumentChange> productArrayList = value.getDocumentChanges();
+//                              for (DocumentChange documentChange: productArrayList) {
+//                                  Log.d(TAG, "onEvent: " + documentChange.getDocument().getData());
+//                              }
+//                          } else {
+//                              Log.e(TAG, "onEvent: query snapshot was null");
+//                          }
+//                      }
+//                  });
+
+//        db.collection("Products")
+//                .whereEqualTo("state", "CA")
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    private String TAG;
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value,
+//                                        @Nullable FirebaseFirestoreException e) {
+//                        if (e != null) {
+//                            Log.w(TAG, "listen:error", e);
+//                            return;
+//                        }
+//
+//                        for (DocumentChange dc : value.getDocumentChanges()) {
+//                            switch (dc.getType()) {
+//                                case ADDED:
+//                                    Log.d(TAG, "New product: " + dc.getDocument().getData());
+//                                    break;
+//                                case MODIFIED:
+//                                    Log.d(TAG, "Modified product: " + dc.getDocument().getData());
+//                                    break;
+//                                case REMOVED:
+//                                    Log.d(TAG, "Removed product: " + dc.getDocument().getData());
+//                                    break;
+//                            }
+//                            myAdapter.notifyDataSetChanged();
+//                        }
+//
+//                    }
+//                });
+
         db.collection("Products")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     private String TAG;
@@ -107,7 +183,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         productArrayList.clear();
                         for (QueryDocumentSnapshot document: value) {
-                            productArrayList.add(new Product(document.getString("Product"), document.getString("SerialNumber"), document.getString("Block"), document.getString("Fullname")));
+                            productArrayList.add(new Product(document.getString("Product"), document.getString("Block"), document.getString("Fullname"), document.getString("SerialNumber")));
                             if (progressDialog.isShowing())
                                 progressDialog.dismiss();
                             Log.d(TAG, "onComplete" + document.getId());
@@ -121,9 +197,9 @@ public class WelcomeActivity extends AppCompatActivity {
 //                .addSnapshotListener(new EventListener<QuerySnapshot>() {
 //                    @Override
 //                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                        Toast.makeText(WelcomeActivity.this, "gasfgdhasvgdhafsdfsa", Toast.LENGTH_SHORT).show();
-//                        if (progressDialog.isShowing())
-//                                progressDialog.dismiss();
+////                        Toast.makeText(WelcomeActivity.this, "gasfgdhasvgdhafsdfsa", Toast.LENGTH_SHORT).show();
+////                        if (progressDialog.isShowing())
+////                                progressDialog.dismiss();
 //                        if (error != null) {
 //                            if (progressDialog.isShowing())
 //                                progressDialog.dismiss();
@@ -133,12 +209,20 @@ public class WelcomeActivity extends AppCompatActivity {
 //                            if (dc.getType() == DocumentChange.Type.ADDED) {
 //                                productArrayList.add(dc.getDocument().toObject(Product.class));
 //                            }
+//                            if (dc.getType() == DocumentChange.Type.MODIFIED) {
+//                                productArrayList.add(dc.getDocument().toObject(Product.class));
+//                                productArrayList.remove(dc.getDocument().toObject(Product.class));
+//                            }
+//                            if (dc.getType() == DocumentChange.Type.REMOVED) {
+//                                productArrayList.remove(dc.getDocument().toObject(Product.class));
+//                            }
 //                            myAdapter.notifyDataSetChanged();
 //                            if (progressDialog.isShowing())
 //                                progressDialog.dismiss();
 //                        }
 //                    }
 //                });
+
     }
 
 }
