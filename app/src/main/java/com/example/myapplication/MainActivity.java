@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
     
     private ProgressBar progressBar;
+    private TextView textView2;
     private TextView textView; //variables
     private EditText Email; //variables
     private EditText Password; //variables
@@ -34,25 +35,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         progressBar = (ProgressBar) findViewById(R.id.Progressbar);
+        textView2 = (TextView) findViewById(R.id.textView2);
         textView = (TextView) findViewById(R.id.textView);
         Email = (EditText) findViewById(R.id.etEmail);
         Password = (EditText) findViewById(R.id.etPassword);
         Login = (Button) findViewById(R.id.btnLogin);
 
         textView.setTranslationX(800);
+        textView2.setTranslationX(800);
         Email.setTranslationX(800);
         Password.setTranslationX(800);
         Login.setTranslationX(800);
 
+        textView2.setAlpha(v);
         textView.setAlpha(v);
         Email.setAlpha(v);
         Password.setAlpha(v);
         Login.setAlpha(v);
 
         textView.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(50).start();
-        Email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(75).start();
-        Password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(100).start();
-        Login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(125).start();
+        textView2.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(75).start();
+        Email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(100).start();
+        Password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(125).start();
+        Login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(150).start();
 
         auth = FirebaseAuth.getInstance();
 
