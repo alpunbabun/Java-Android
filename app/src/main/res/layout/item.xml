@@ -34,7 +34,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvProduct"
+                android:id="@+id/tv_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -58,7 +58,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvSerialNumber"
+                android:id="@+id/tv_serialNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -82,7 +82,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvBlock"
+                android:id="@+id/tv_block"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -106,7 +106,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvFullName"
+                android:id="@+id/tv_fullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"

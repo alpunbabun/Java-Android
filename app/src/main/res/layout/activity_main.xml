@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_helloAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_welcome"
         android:layout_width="219dp"
         android:layout_height="45dp"
         android:text="Welcome back you've been missed!"
@@ -36,10 +36,10 @@
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276" />
+        app:layout_constraintVertical_bias="0.266" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/et_password"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -53,13 +53,13 @@
         android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail"
+        app:layout_constraintEnd_toEndOf="@+id/et_email"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/etEmail"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/et_email"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
@@ -76,10 +76,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_helloAgain" />
 
     <ProgressBar
-        android:id="@+id/Progressbar"
+        android:id="@+id/pb_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_login"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
@@ -105,10 +105,10 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintEnd_toEndOf="@+id/et_password"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintStart_toStartOf="@+id/et_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 

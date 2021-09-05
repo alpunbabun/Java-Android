@@ -18,10 +18,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     private ProgressBar progressBar;
     private TextView textView2;
-    private TextView textView; //variables
+    private TextView textView1; //variables
     private EditText Email; //variables
     private EditText Password; //variables
     private Button Login;      //variables
@@ -34,26 +34,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progressBar = (ProgressBar) findViewById(R.id.Progressbar);
-        textView2 = (TextView) findViewById(R.id.textView2);
-        textView = (TextView) findViewById(R.id.textView);
-        Email = (EditText) findViewById(R.id.etEmail);
-        Password = (EditText) findViewById(R.id.etPassword);
-        Login = (Button) findViewById(R.id.btnLogin);
+        progressBar = (ProgressBar) findViewById(R.id.pb_loading);
+        textView2 = (TextView) findViewById(R.id.tv_welcome);
+        textView1 = (TextView) findViewById(R.id.tv_helloAgain);
+        Email = (EditText) findViewById(R.id.et_email);
+        Password = (EditText) findViewById(R.id.et_password);
+        Login = (Button) findViewById(R.id.btn_login);
 
-        textView.setTranslationX(800);
+        textView1.setTranslationX(800);
         textView2.setTranslationX(800);
         Email.setTranslationX(800);
         Password.setTranslationX(800);
         Login.setTranslationX(800);
 
         textView2.setAlpha(v);
-        textView.setAlpha(v);
+        textView1.setAlpha(v);
         Email.setAlpha(v);
         Password.setAlpha(v);
         Login.setAlpha(v);
 
-        textView.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(50).start();
+        textView1.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(50).start();
         textView2.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(75).start();
         Email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(100).start();
         Password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(125).start();
@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 auth.signInWithEmailAndPassword(txt_Email, txt_Password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                            progressBar.setVisibility(View.VISIBLE);
-                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-                            finish();
+                        progressBar.setVisibility(View.VISIBLE);
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                        finish();
                     }
                 });
             }
