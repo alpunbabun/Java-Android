@@ -54,10 +54,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Product = itemView.findViewById(R.id.tvProduct);
-            SerialNumber = itemView.findViewById(R.id.tvSerialNumber);
-            Block = itemView.findViewById(R.id.tvBlock);
-            Fullname = itemView.findViewById(R.id.tvFullName);
+            Product = itemView.findViewById(R.id.tv_product);
+            SerialNumber = itemView.findViewById(R.id.tv_serialNumber);
+            Block = itemView.findViewById(R.id.tv_block);
+            Fullname = itemView.findViewById(R.id.tv_fullName);
         }
     }
 
